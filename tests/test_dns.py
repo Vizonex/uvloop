@@ -35,7 +35,9 @@ class BaseTestDNS:
             err = ex
 
         try:
-            a2 = self.loop.run_until_complete(self.loop.getaddrinfo(*args, **kwargs))
+            a2 = self.loop.run_until_complete(
+                self.loop.getaddrinfo(*args, **kwargs)
+            )
         except (socket.gaierror, UnicodeError) as ex:
             if err is not None:
                 self.assertEqual(ex.args, err.args)
@@ -59,7 +61,9 @@ class BaseTestDNS:
             err = ex
 
         try:
-            a2 = self.loop.run_until_complete(self.loop.getnameinfo(*args, **kwargs))
+            a2 = self.loop.run_until_complete(
+                self.loop.getnameinfo(*args, **kwargs)
+            )
         except Exception as ex:
             if err is not None:
                 if ex.__class__ is not err.__class__:
@@ -87,7 +91,9 @@ class BaseTestDNS:
 
     def test_getaddrinfo_4(self):
         self._test_getaddrinfo("example.com", 80, family=-1)
-        self._test_getaddrinfo("example.com", 80, type=socket.SOCK_STREAM, family=-1)
+        self._test_getaddrinfo(
+            "example.com", 80, type=socket.SOCK_STREAM, family=-1
+        )
 
     def test_getaddrinfo_5(self):
         self._test_getaddrinfo("example.com", "80")
@@ -293,7 +299,9 @@ class Test_UV_DNS(BaseTestDNS, tb.UVTestCase):
             raise unittest.SkipTest
 
         async def run():
-            fut = self.loop.create_task(self.loop.getaddrinfo("example.com", 80))
+            fut = self.loop.create_task(
+                self.loop.getaddrinfo("example.com", 80)
+            )
             await asyncio.sleep(0)
             fut.cancel()
             self.loop.stop()
