@@ -50,8 +50,8 @@ class Test_UV_FS_Event(tb.UVTestCase):
 
             h = self.loop._monitor_fs(path, event_cb)
             self.loop.run_until_complete(
-                asyncio.sleep(0.1)  # let monitor start
-            )
+                asyncio.sleep(0.1)
+            )  # let monitor start
             self.assertFalse(h.cancelled())
 
             self.loop.run_until_complete(asyncio.wait_for(file_writer(), 4))
