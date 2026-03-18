@@ -430,7 +430,8 @@ class _TestTCP:
             writer.write(b"AAAA")
             self.assertEqual(await reader.readexactly(2), b"OK")
 
-            re = r"(a bytes-like object)|(must be byte-ish)|(bytes\, bytearray\, or memoryview object\, not 'str')"
+            re = r"(a bytes-like object)|(must be byte-ish)|(bytes\, "\
+                r"bytearray\, or memoryview object\, not 'str')"
             with self.assertRaisesRegex(TypeError, re):
                 writer.write("AAAA")
 
@@ -1319,7 +1320,8 @@ class _TestSSL(tb.SSLTestCase):
         server_context = self._create_server_ssl_context(
             self.ONLYCERT, self.ONLYKEY
         )
-        client_context = self._create_client_ssl_context()
+        # flake8 client_context unused.
+        _ = self._create_client_ssl_context()
 
         async def handle_client(reader, writer):
             # Send data before TLS upgrade
