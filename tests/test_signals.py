@@ -469,7 +469,7 @@ print(fd0 == fd1, flush=True)
 
         self.loop.run_until_complete(runner())
 
-    
+
     def test_signals_fork_in_thread(self):
         if (
             sys.platform == "win32"
