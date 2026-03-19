@@ -100,7 +100,7 @@ class BaseTestDNS:
     def test_getaddrinfo_5(self):
         self._test_getaddrinfo("example.com", "80")
         self._test_getaddrinfo("example.com", "80", type=socket.SOCK_STREAM)
-    
+
     @unittest.skip("104.18.27.120 != 104.18.26.120")
     def test_getaddrinfo_6(self):
         self._test_getaddrinfo(b"example.com", b"80")
