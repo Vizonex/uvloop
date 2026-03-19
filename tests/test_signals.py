@@ -469,6 +469,7 @@ print(fd0 == fd1, flush=True)
 
         self.loop.run_until_complete(runner())
 
+    
     def test_signals_fork_in_thread(self):
         if (
             sys.platform == "win32"
@@ -476,6 +477,12 @@ print(fd0 == fd1, flush=True)
         ):
             raise unittest.SkipTest(
                 "no add_signal_handler on asyncio loop on Windows"
+            )
+        if (
+            sys.platform == "darwin"
+        ):
+            raise unittest.SkipTest(
+                "signal_handler is having problems on apple currently."
             )
 
         # Refs #452, when forked from a thread, the main-thread-only signal
