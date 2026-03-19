@@ -880,7 +880,8 @@ class _AsyncioTests:
         async def copy_stdin_to_stdout(stdin):
             # See https://github.com/MagicStack/uvloop/issues/363
             # A program that copies stdin to stdout character by character
-            code = "import sys, shutil\nshutil.copyfileobj(sys.stdin, sys.stdout, 1)"
+            code = "import sys, shutil\n"
+            code += "shutil.copyfileobj(sys.stdin, sys.stdout, 1)"
             proc = await asyncio.create_subprocess_exec(
                 sys.executable,
                 b"-W",
