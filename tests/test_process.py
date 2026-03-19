@@ -912,7 +912,7 @@ class _AsyncioTests:
     @unittest.skip("Works on uvloop broken on python-asyncio")
     def test_write_huge_stdin_219263(self):
         self._test_write_huge_stdin(219263)
-        
+
     @unittest.skip("Works on uvloop broken on python-asyncio")
     def test_write_huge_stdin_219264(self):
         self._test_write_huge_stdin(219264)
