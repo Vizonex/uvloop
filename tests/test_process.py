@@ -901,15 +901,19 @@ class _AsyncioTests:
         stdout = self.loop.run_until_complete(copy_stdin_to_stdout(stdin))
         self.assertEqual(stdout, stdin)
 
+    @unittest.skip("Works on uvloop broken on python-asyncio")
     def test_write_huge_stdin_8192(self):
         self._test_write_huge_stdin(8192)
 
+    @unittest.skip("Works on uvloop broken on python-asyncio")
     def test_write_huge_stdin_8193(self):
         self._test_write_huge_stdin(8193)
 
+    @unittest.skip("Works on uvloop broken on python-asyncio")
     def test_write_huge_stdin_219263(self):
         self._test_write_huge_stdin(219263)
-
+        
+    @unittest.skip("Works on uvloop broken on python-asyncio")
     def test_write_huge_stdin_219264(self):
         self._test_write_huge_stdin(219264)
 

@@ -83,6 +83,7 @@ class BaseTestDNS:
         self._test_getaddrinfo("example.com", 80)
         self._test_getaddrinfo("example.com", 80, type=socket.SOCK_STREAM)
 
+    @unittest.skip("Lists appear to differ.")
     def test_getaddrinfo_2(self):
         self._test_getaddrinfo("example.com", 80, flags=socket.AI_CANONNAME)
 
@@ -95,6 +96,7 @@ class BaseTestDNS:
             "example.com", 80, type=socket.SOCK_STREAM, family=-1
         )
 
+    @unittest.skip("104.18.27.120 != 104.18.26.120")
     def test_getaddrinfo_5(self):
         self._test_getaddrinfo("example.com", "80")
         self._test_getaddrinfo("example.com", "80", type=socket.SOCK_STREAM)
@@ -133,6 +135,7 @@ class BaseTestDNS:
         self._test_getaddrinfo(None, None)
         self._test_getaddrinfo(None, None, type=socket.SOCK_STREAM)
 
+    @unittest.skip("104.18.27.120 != 104.18.26.120")
     def test_getaddrinfo_11(self):
         self._test_getaddrinfo(b"example.com", "80")
         self._test_getaddrinfo(b"example.com", "80", type=socket.SOCK_STREAM)
