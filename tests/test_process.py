@@ -415,11 +415,11 @@ print('err', file=sys.stderr, flush=True)
         self.loop.run_until_complete(test())
 
     def test_process_streams_pass_fds(self):
-        # if sys.platform == "win32":
-        #     # Winloop comment: certainly not supported for asyncio
-        #     # Maybe can be made to work for winloop, as libuv has
-        #     # support for pass_fds on Windows.
-        #     raise unittest.SkipTest("pass_fds not supported on Windows")
+        if sys.platform == "win32":
+            # Winloop comment: certainly not supported for asyncio
+            # Maybe can be made to work for winloop, as libuv has
+            # support for pass_fds on Windows.
+            raise unittest.SkipTest("pass_fds not supported on Windows")
 
         async def test():
             prog = """\
