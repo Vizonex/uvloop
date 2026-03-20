@@ -178,6 +178,7 @@ class _TestBase:
                 raise unittest.SkipTest(
                     "rounding errors are still present in 3.11"
                 )
+
         async def main():
             await asyncio.sleep(0.001)
             time.sleep(0.01)
