@@ -173,7 +173,11 @@ class _TestBase:
     def test_call_later_2(self):
         # Test that loop.call_later triggers an update of
         # libuv cached time.
-
+        if self.implementation == "asyncio" and sys.version_info == (3, 11):
+            if sys.platform == "win32":
+                raise unittest.SkipTest(
+                    "rounding errors are still present in 3.11"
+                )
         async def main():
             await asyncio.sleep(0.001)
             time.sleep(0.01)
