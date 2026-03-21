@@ -2836,7 +2836,7 @@ cdef class Loop:
             if not comspec:
                 system_root = os_environ.get("SystemRoot", '')
                 comspec = os_path_join(system_root, 'System32', 'cmd.exe')
-                if not os.path.isabs(comspec):
+                if not os_path_isabs(comspec):
                     raise FileNotFoundError('shell not found: neither %ComSpec% nor %SystemRoot% is set')
             
             args = [comspec]
