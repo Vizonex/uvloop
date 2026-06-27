@@ -701,8 +701,8 @@ class TestUVSockets(_TestSockets, tb.UVTestCase):
         async def kill(fut):
             # Winloop comment: shorter sleep needed on Windows
             # to pass test. Otherwise, fut is done too early.
-            C = 2 if sys.platform == "win32" else 1
-            await asyncio.sleep(0.2 / C)
+            C = 0.05 if sys.platform == "win32" else 2
+            await asyncio.sleep(C)
             fut.cancel()
 
         async def client(sock, addr):
@@ -711,7 +711,7 @@ class TestUVSockets(_TestSockets, tb.UVTestCase):
             # Winloop comment: larger message needed on Windows
             # to pass test. Otherwise, Future f is done too
             # early in kill(f).
-            C = 25 if sys.platform == "win32" else 1
+            C = 30 if sys.platform == "win32" else 1
             f = asyncio.ensure_future(
                 self.loop.sock_sendall(sock, b"helo" * (1024 * 1024 * 50 * C)),
                 loop=self.loop,
