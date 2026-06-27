@@ -701,8 +701,8 @@ class TestUVSockets(_TestSockets, tb.UVTestCase):
         async def kill(fut):
             # Winloop comment: shorter sleep needed on Windows
             # to pass test. Otherwise, fut is done too early.
-            C = 0.05 if sys.platform == "win32" else 2
-            await asyncio.sleep(C)
+            C = 3 if sys.platform == "win32" else 1
+            await asyncio.sleep(0.2 / C)
             fut.cancel()
 
         async def client(sock, addr):
