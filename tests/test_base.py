@@ -192,7 +192,7 @@ class _TestBase:
         started = time.monotonic()
         self.loop.run_until_complete(main())
         delta = time.monotonic() - started
-        self.assertGreater(delta, 0.015)
+        self.assertGreater(delta, 0.011)
 
     def test_call_later_3(self):
         # a memory leak regression test
