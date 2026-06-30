@@ -97,6 +97,14 @@ jobs:
             cibw_arch: x86_64
           - os: ubuntu-22.04-arm
             cibw_arch: universal2
+          - os: windows-11-arm
+            python-version: '3.8'
+          - os: windows-11-arm
+            python-version: '3.9'
+          - os: windows-11-arm
+            python-version: '3.10'
+          - os: windows-11-arm
+            python-version: '3.14t'
 
     defaults:
       run:
