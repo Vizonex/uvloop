@@ -7,6 +7,7 @@ on:
       - ci
   pull_request:
     branches:
+      - windows
       - master
 
 jobs:
@@ -24,8 +25,7 @@ jobs:
         - "3.13"
         - "3.14"
         - "3.14t"
-        # TODO: (Vizonex) windows-11-arm
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest, windows-11-arm]
 
     env:
       PIP_DISABLE_PIP_VERSION_CHECK: 1

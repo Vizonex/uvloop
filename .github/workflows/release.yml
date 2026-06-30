@@ -75,7 +75,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, ubuntu-22.04-arm]
+        os: [ubuntu-latest, macos-latest, ubuntu-22.04-arm, windows-latest, windows-11-arm]
         python:
         - "cp38"
         - "cp39"
