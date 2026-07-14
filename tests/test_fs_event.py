@@ -86,7 +86,12 @@ class Test_UV_FS_Event(tb.UVTestCase):
         self.loop.run_until_complete(asyncio.sleep(0.5))  # let monitor start
         self.assertFalse(h.cancelled())
 
-        self.loop.run_until_complete(asyncio.wait_for(file_renamer(), 4))
+        # XXX: Timeout doesn't seem to fine tune on windows
+        # so a larger timeout is needed.
+        file_renamer_timeout = 4 if sys.platform != "win32" else 8
+        self.loop.run_until_complete(
+            asyncio.wait_for(file_renamer(), file_renamer_timeout)
+        )
         h.cancel()
         self.assertTrue(h.cancelled())
 
