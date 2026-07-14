@@ -10,6 +10,7 @@ from uvloop.loop import FileSystemEvent
 
 IS_GITHUB_CI = os.getenv("GITHUB_ACTIONS") == "true"
 
+
 class Test_UV_FS_Event(tb.UVTestCase):
     def setUp(self):
         super().setUp()
@@ -62,8 +63,8 @@ class Test_UV_FS_Event(tb.UVTestCase):
         self.assertEqual(change_event_count, 4)
 
     @unittest.skipIf(
-        IS_GITHUB_CI and sys.platform == "win32", 
-        "works fine on windows but on the github workflow it is broken."
+        IS_GITHUB_CI and sys.platform == "win32",
+        "works fine on windows but on the github workflow it is broken.",
     )
     def test_fs_event_rename(self):
         orig_name = "hello_fs_event.txt"
@@ -90,7 +91,7 @@ class Test_UV_FS_Event(tb.UVTestCase):
         h = self.loop._monitor_fs(self.tmp_dir, event_cb)
         self.loop.run_until_complete(asyncio.sleep(0.5))  # let monitor start
         self.assertFalse(h.cancelled())
-        
+
         self.loop.run_until_complete(asyncio.wait_for(file_renamer(), 4))
         h.cancel()
         self.assertTrue(h.cancelled())
