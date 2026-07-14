@@ -8,6 +8,8 @@ import unittest
 from uvloop import _testbase as tb
 from uvloop.loop import FileSystemEvent
 
+IS_GITHUB_CI = os.getenv("GITHUB_ACTIONS") == "true"
+
 
 class Test_UV_FS_Event(tb.UVTestCase):
     def setUp(self):
@@ -60,6 +62,10 @@ class Test_UV_FS_Event(tb.UVTestCase):
 
         self.assertEqual(change_event_count, 4)
 
+    @unittest.skipIf(
+        IS_GITHUB_CI and sys.platform == "win32",
+        "works fine on windows but on the github workflow it is broken.",
+    )
     def test_fs_event_rename(self):
         orig_name = "hello_fs_event.txt"
         new_name = "hello_fs_event_rename.txt"
