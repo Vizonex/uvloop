@@ -12,6 +12,7 @@ import gc
 import inspect
 import itertools
 import os
+import shlex
 import signal
 import socket
 import subprocess
@@ -76,6 +77,8 @@ cdef int SO_REUSEPORT = getattr(socket, 'SO_REUSEPORT', 0)
 cdef int SO_BROADCAST = getattr(socket, 'SO_BROADCAST')
 cdef int SOCK_NONBLOCK = getattr(socket, 'SOCK_NONBLOCK', -1)
 cdef int socket_AI_CANONNAME = getattr(socket, 'AI_CANONNAME')
+
+cdef shlex_split = shlex.split
 
 cdef socket_gaierror = socket.gaierror
 cdef socket_error = socket.error
@@ -177,7 +180,7 @@ cdef py_inf = float('inf')
 
 # Cython doesn't clean-up imported objects properly in Py3 mode,
 # so we delete refs to all modules manually (except sys)
-del asyncio, concurrent, collections, errno
+del asyncio, concurrent, collections, errno, shlex
 del functools, inspect, itertools, socket, os, threading
 del signal, subprocess, ssl
 del time, traceback, warnings, weakref
