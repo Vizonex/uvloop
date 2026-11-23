@@ -206,7 +206,6 @@ class _BasePipeTest:
         self.loop.run_until_complete(proto.done)
         self.assertEqual("CLOSED", proto.state)
 
-
     @unittest.skipIf(tb.is_windows, "no Unix sockets on Windows")
     def test_write_pipe_disconnect_on_close(self):
         rsock, wsock = socket.socketpair()

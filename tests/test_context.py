@@ -404,10 +404,7 @@ class _ContextBaseTests(tb.SSLTestCase):
         self._run_server_test(test, async_sock=True)
 
     def test_create_ssl_server_connection_protocol(self):
-        if (
-            self.implementation == "asyncio"
-            and tb.is_windows
-        ):
+        if self.implementation == "asyncio" and tb.is_windows:
             raise unittest.SkipTest(
                 "ConnectionResetError gets is initiated"
                 # "free-threading builds are victim to a "
