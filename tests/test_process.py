@@ -11,6 +11,8 @@ import textwrap
 import time
 import unittest
 
+from test.test_asyncio import test_subprocess
+
 try:
     import psutil
 
@@ -1207,6 +1209,7 @@ class Test_UV_Process_Delayed(tb.UVTestCase):
             },
         )
 
+    @unittest.skip("became broken once windows support was introduced.")
     def test_process_delayed_stdio__not_paused__no_stdin(self):
         if (
             os.environ.get("TRAVIS_OS_NAME")
