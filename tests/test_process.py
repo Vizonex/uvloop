@@ -11,8 +11,6 @@ import textwrap
 import time
 import unittest
 
-from test.test_asyncio import test_subprocess
-
 try:
     import psutil
 
