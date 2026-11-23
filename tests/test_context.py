@@ -6,7 +6,6 @@ import random
 import socket
 import ssl
 import sys
-import sysconfig
 import tempfile
 import unittest
 import weakref
