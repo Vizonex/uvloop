@@ -938,7 +938,7 @@ class _AsyncioTests:
         self._test_write_huge_stdin(219264)
 
     def _test_write_huge_stdin(self, buf_size):
-        if isinstance(self, Test_AIO_Process):
+        if self.implementation == "asyncio":
             raise unittest.SkipTest(
                 "not working on standard asyncio at the moment."
             )
