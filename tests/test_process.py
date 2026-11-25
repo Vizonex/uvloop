@@ -1213,9 +1213,8 @@ class Test_UV_Process_Delayed(tb.UVTestCase):
             transport.close()
 
     def test_process_delayed_stdio__not_paused__no_stdin(self):
-        if (
-            os.environ.get("TRAVIS_OS_NAME")
-            or os.environ.get("GITHUB_WORKFLOW")
+        if os.environ.get("TRAVIS_OS_NAME") or os.environ.get(
+            "GITHUB_WORKFLOW"
         ):
             if sys.platform == "darwin":
                 # Randomly crashes on Travis, can't reproduce locally.
@@ -1223,7 +1222,7 @@ class Test_UV_Process_Delayed(tb.UVTestCase):
             elif sys.version_info >= (3, 13) and sys.platform == "linux":
                 # Can't reproduce
                 raise unittest.SkipTest()
-    
+
         transport, proto = self.loop.run_until_complete(
             self.run_sub(
                 stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE
